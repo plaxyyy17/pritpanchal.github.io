@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CareerBoost AI</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-blue: #3B82F6;
+      --color-purple: #8B5CF6;
+      --color-gray: #F3F4F6;
+      --color-dark: #1F2937;
+      --color-card-bg: #fff;
+      --color-card-shadow: 0 4px 16px rgba(59, 130, 246, 0.08), 0 2px 4px rgba(139, 92, 246, 0.08);
+      --color-border: #E5E7EB;
+      --radius-card: 12px;
+      --radius-btn: 8px;
+      --spacing-xs: 8px;
+      --spacing-s: 16px;
+      --spacing-m: 24px;
+      --spacing-l: 32px;
+      --body-font: "Inter", "Poppins", Arial, Helvetica, sans-serif;
+      --gradient-hero: linear-gradient(105deg, #3B82F6 0%, #8B5CF6 100%);
+      --gradient-btn: linear-gradient(90deg, #3B82F6 10%, #8B5CF6 90%);
+      --heading-lg: 48px;
+      --heading-md: 28px;
+      --heading-sm: 20px;
+      --body: 16px;
+      --shadow-hover: 0 6px 20px rgba(139, 92, 246, 0.12);
+      --transition: all 0.32s cubic-bezier(0.18,0.89,0.32,1.28);
+    }
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: var(--body-font);
+      background: var(--color-gray);
+      color: var(--color-dark);
+      min-height: 100vh;
+    }
+    body {
+      transition: background var(--transition);
+    }
+    .fade-in {
+      animation: fadeIn 0.7s cubic-bezier(.36, .01, .52, .98);
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: none; }
+    }
+    .navbar {
+      background: var(--color-card-bg);
+      box-shadow: var(--color-card-shadow);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: var(--spacing-xs) var(--spacing-l);
+      border-radius: 0 0 var(--radius-card) var(--radius-card);
+      position: sticky;
+      top: 0;
+      z-index: 40;
+    }
+    .nav-logo {
+      font-size: 1.75rem;
+      font-weight: 700;
+      background: var(--gradient-btn);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-fill-color: transparent;
+      letter-spacing: -1px;
+      font-family: 'Poppins', var(--body-font);
+    }
+    .nav-links {
+      display: flex;
+      gap: var(--spacing-s);
+      align-items: center;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--color-dark);
+      font-weight: 500;
+      padding: 6px 18px;
+      border-radius: var(--radius-btn);
+      font-family: 'Inter', var(--body-font);
+      transition: background var(--transition), transform var(--transition);
+    }
+    .nav-links a.active, .nav-links a:hover {
+      background: var(--gradient-btn);
+      color: #fff;
+      transform: scale(1.06);
+      box-shadow: var(--shadow-hover);
+    }
+    main {
+      min-height: 80vh;
+      padding-bottom: var(--spacing-l);
+    }
+    /* Hero Section */
+    .hero {
+      background: var(--gradient-hero);
+      border-radius: var(--radius-card);
+      box-shadow: var(--color-card-shadow);
+      padding: var(--spacing-l) var(--spacing-m);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: var(--spacing-m);
+      margin-bottom: var(--spacing-l);
+      color: #fff;
+      text-align: center;
+      position: relative;
+    }
+    .hero-title {
+      font-size: var(--heading-lg);
+      font-family: 'Poppins', var(--body-font);
+      font-weight: 700;
+      margin-bottom: var(--spacing-s);
+      letter-spacing: -1px;
+    }
+    .hero-subtitle {
+      font-size: 20px;
+      font-weight: 400;
+      font-family: 'Inter', var(--body-font);
+      margin-bottom: var(--spacing-m);
+    }
+    .hero-btns {
+      display: flex;
+      gap: var(--spacing-s);
+      margin-bottom: var(--spacing-m);
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .btn {
+      border: none;
+      border-radius: var(--radius-btn);
+      font-family: inherit;
+      font-size: 17px;
+      font-weight: 600;
+      padding: var(--spacing-xs) var(--spacing-m);
+      cursor: pointer;
+      box-shadow: var(--color-card-shadow);
+      background: var(--gradient-btn);
+      color: #fff;
+      transition: var(--transition);
+      outline: none;
+      margin-bottom: 2px;
+    }
+    .btn-secondary {
+      background: #fff;
+      color: var(--color-purple);
+      border: 1px solid var(--color-purple);
+    }
+    .btn-secondary:hover {
+      background: var(--gradient-btn);
+      color: #fff;
+    }
+    .btn:hover, .btn:focus {
+      transform: scale(1.02);
+      box-shadow: var(--shadow-hover);
+    }
+    /* Feature Cards */
+    .features {
+      display: flex;
+      gap: var(--spacing-m);
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: var(--spacing-l);
+    }
+    .feature-card {
+      background: var(--color-card-bg);
+      border-radius: var(--radius-card);
+      box-shadow: var(--color-card-shadow);
+      padding: var(--spacing-m);
+      text-align: left;
+      min-width: 270px;
+      max-width: 350px;
+      flex: 1 1 270px;
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-s);
+      align-items: flex-start;
+      transition: var(--transition);
+      position: relative;
+    }
+    .feature-card:hover {
+      transform: scale(1.02);
+      box-shadow: var(--shadow-hover);
+      border: 1.5px solid var(--color-blue);
+      z-index: 2;
+    }
+    .feature-icon {
+      font-size: 2.2rem;
+      color: var(--color-purple);
+      margin-bottom: 0;
+    }
+    .feature-title {
+      font-size: var(--heading-sm);
+      font-weight: 700;
+      font-family: 'Poppins', var(--body-font);
+      margin-bottom: 2px;
+    }
+    .feature-desc {
+      font-size: 16px;
+      font-family: 'Inter', var(--body-font);
+      color: var(--color-dark);
+      opacity: 0.92;
+      margin-bottom: 10px;
+    }
+    .feature-card .btn {
+      align-self: stretch;
+      background: var(--gradient-btn);
+      color: #fff;
+      margin-top: var(--spacing-xs);
+    }
+    /* --- PAGE STYLES BELOW --- */
+    .cb-section {
+      max-width: 1000px;
+      margin: auto;
+      padding: var(--spacing-l) var(--spacing-xs);
+    }
+    /* Responsive design */
+    @media (max-width: 900px) {
+      .features {
+        flex-direction: column;
+        gap: var(--spacing-m);
+      }
+      .feature-card {
+        min-width: 100%;
+        max-width: 100%;
+      }
+      .cb-section { max-width: 98vw; }
+      .hero { font-size: 19px; }
+      .hero-title { font-size: 36px; }
+    }
+    @media (max-width: 600px) {
+      .navbar { flex-direction: column; gap: 0; padding: 8px 0; }
+      .nav-links { gap: 2px; }
+      .hero { font-size: 17px; padding: 18px 7px; }
+      .hero-title { font-size: 28px; }
+      .features { gap: var(--spacing-s); }
+    }
+    /* Loader + Animations */
+    .cb-loader {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-blue);
+      font-size: 22px;
+      padding: 10px 0;
+      animation: fadeIn 0.55s cubic-bezier(.36, .01, .52, .98);
+    }
+    /* Custom page transitions */
+    .cb-page {
+      opacity: 0;
+      transform: translateY(24px);
+      animation: fadeIn 0.62s cubic-bezier(.36, .01, .52, .98) forwards;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <span class="nav-logo">CareerBoost AI</span>
+    <div class="nav-links" id="navLinks">
+      <a href="#home" class="active">Home</a>
+      <a href="#resume">Resume Builder</a>
+      <a href="#ats">ATS Checker</a>
+      <a href="#interview">Interview Practice</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+  <main id="app"><!-- SPA Container --></main>
+  <script>
+    // Fonts
+    document.body.style.fontFamily = 'Inter, Poppins, Arial, Helvetica, sans-serif';
+    // Routing
+    const App = document.getElementById('app');
+    const navLinks = document.getElementById('navLinks').querySelectorAll('a');
+    function setActiveNav(hash) {
+      navLinks.forEach(a => a.classList.remove('active'));
+      Array.from(navLinks).forEach(link => {
+        if ((link.getAttribute('href') === hash) || (hash === '' && link.getAttribute('href') === '#home')) link.classList.add('active');
+      });
+    }
+    window.addEventListener('hashchange', () => {
+      setActiveNav(window.location.hash);
+      router(window.location.hash);
+    });
+    document.addEventListener('DOMContentLoaded', () => {
+      setActiveNav(window.location.hash);
+      router(window.location.hash);
+    });
+    // Page transitions
+    function cbFadeIn(node) {
+      node.classList.add('cb-page');
+      setTimeout(() => node.classList.remove('cb-page'), 850);
+    }
+    function showLoader() {
+      App.innerHTML = '<div class="cb-loader">Loading...</div>';
+    }
+    // In-memory state storage (replacing localStorage)
+    const AppState = {
+      cb_resume: {
+        personal: { name: '', email: '', phone: '', location: '' },
+        summary: '',
+        education: [],
+        skills: [],
+        projects: [],
+        experience: []
+      },
+      cb_ats: {file:null,score:null,keywords:[],suggestions:[],tips:[]},
+      cb_interview: {role:'Software Engineer',questions:[],current:0,answers:[],scores:[],feedbacks:[]}
+    };
+    function saveLocal(key, value) {
+      AppState[key] = value;
+    }
+    function loadLocal(key, fallback) {
+      return AppState[key] || fallback;
+    }
+    // Data (minimal in-page for first load)
+    const JOB_ROLES = [
+      "Software Engineer","Product Manager","Data Scientist","UX Designer","Marketing Manager","Business Analyst","DevOps Engineer","Project Manager"
+    ];
+    const INTERVIEW_QUESTIONS = {
+      "Software Engineer":["Tell me about a challenging technical problem you solved and how you approached it.","Explain the difference between REST and GraphQL APIs.","How do you handle debugging in a production environment?","Describe your experience with version control systems like Git.","What design patterns are you familiar with and when would you use them?","How do you approach writing clean, maintainable code?","Tell me about a time you had to learn a new technology quickly.","How do you optimize application performance?","Describe your experience with automated testing and CI/CD pipelines.","What motivates you to work as a software engineer?"],
+      "Product Manager":["Walk me through a product you've worked on and how you measured its success.","How do you prioritize features when you have competing demands?","Tell me about your experience with user research and data analysis.","How do you handle conflicts between engineering and design teams?","Describe a time when you had to make a difficult product decision with limited data.","What metrics do you consider most important for product success?","How do you stay updated with industry trends and competitor products?","Tell me about a product failure and what you learned from it.","How do you approach gathering and incorporating user feedback?","What's your experience with agile methodologies and sprint planning?"],
+      "Data Scientist":["Walk me through a recent data analysis project and your approach.","How do you handle missing data and outliers in your datasets?","Explain the difference between supervised and unsupervised learning.","Tell me about your experience with Python libraries like Pandas, NumPy, and Scikit-learn.","How do you validate the accuracy of your machine learning models?","Describe a time when you communicated complex findings to non-technical stakeholders.","What's your experience with SQL and database queries?","How do you approach feature engineering in your projects?","Tell me about your experience with data visualization tools.","How do you prevent overfitting in machine learning models?"],
+      "UX Designer":["Walk me through your design process from problem identification to solution.","How do you conduct user research and apply insights to your designs?","Tell me about a redesign project and how you measured its success.","How do you create and use wireframes and prototypes?","Describe your experience with design systems and component libraries.","How do you handle feedback and criticism on your designs?","What's your experience with accessibility and designing for inclusive experiences?","Tell me about your collaboration with developers and product teams.","How do you use analytics and user data to inform design decisions?","What design tools do you prefer and why?"],
+      "Marketing Manager":["Describe a successful marketing campaign you led and how you measured ROI.","How do you approach developing a go-to-market strategy?","Tell me about your experience with digital marketing channels and paid advertising.","How do you segment audiences and personalize messaging?","Describe your experience with marketing analytics and A/B testing.","How do you collaborate with sales and product teams?","Tell me about a time you had to pivot your marketing strategy.","What's your experience with content marketing and brand positioning?","How do you stay ahead of marketing trends?","Tell me about your experience with marketing automation platforms."],
+      "Business Analyst":["Walk me through a requirements gathering process you led.","How do you translate business needs into technical specifications?","Tell me about your experience with data analysis and creating reports.","Describe a time when you identified a problem that required process improvement.","How do you handle stakeholder management across different departments?","What's your experience with documentation and creating process flows?","Tell me about your experience with testing and quality assurance.","How do you approach risk assessment in projects?","Describe your experience with SQL and database analysis.","How do you ensure alignment between business goals and project outcomes?"],
+      "DevOps Engineer":["Tell me about your experience with CI/CD pipeline implementation.","How do you approach infrastructure as code and automation?","Describe your experience with cloud platforms like AWS, Azure, or GCP.","What's your approach to monitoring and logging in production environments?","Tell me about a time you had to troubleshoot a critical production issue.","How do you ensure security in your DevOps practices?","What's your experience with containerization and orchestration tools?","Describe your approach to disaster recovery and backup strategies.","How do you manage configuration management across environments?","Tell me about your experience with performance optimization and scaling."],
+      "Project Manager":["Describe a complex project you managed and how you handled challenges.","How do you approach project planning and resource allocation?","Tell me about your experience with project management methodologies.","How do you manage stakeholder expectations and communication?","Describe a time when a project went over budget or timeline and how you handled it.","What's your approach to risk management?","How do you track project progress and report status?","Tell me about your experience with team motivation and conflict resolution.","How do you ensure quality standards are met?","Describe your experience with tools like Jira, Asana, or MS Project."]
+    };
+    // SPA router
+    function router(hash) {
+      let page = "home";
+      if (hash && hash.length > 1) page = hash.replace('#', '').toLowerCase();
+      if (["home","resume","ats","interview","about","contact"].indexOf(page) < 0) page = "home";
+      showPage(page);
+    }
+    // ------------ PAGE RENDERERS ------------ //
+    // Home Page
+    function renderHome() {
+      const homeHtml = `
+        <section class="hero fade-in">
+          <div class="hero-title fade-in">Boost Your Career with AI</div>
+          <div class="hero-subtitle fade-in">Generate resumes, check ATS compatibility, and ace interviews</div>
+          <div class="hero-btns fade-in">
+            <button class="btn" onclick="location.hash='#resume'">Create Resume</button>
+            <button class="btn btn-secondary" onclick="location.hash='#interview'">Practice Interview</button>
+          </div>
+        </section>
+        <section class="features fade-in">
+          <div class="feature-card fade-in">
+            <div class="feature-icon">📝</div>
+            <div class="feature-title">AI Resume Generator</div>
+            <div class="feature-desc">Create professional ATS-optimized resumes in minutes</div>
+            <button class="btn" onclick="location.hash='#resume'">Get Started</button>
+          </div>
+          <div class="feature-card fade-in">
+            <div class="feature-icon">📊</div>
+            <div class="feature-title">ATS Resume Checker</div>
+            <div class="feature-desc">Scan your resume and get an ATS score with improvement suggestions</div>
+            <button class="btn" onclick="location.hash='#ats'">Get Started</button>
+          </div>
+          <div class="feature-card fade-in">
+            <div class="feature-icon">🤖</div>
+            <div class="feature-title">Interview Practice</div>
+            <div class="feature-desc">Practice with AI-generated interview questions and get feedback</div>
+            <button class="btn" onclick="location.hash='#interview'">Get Started</button>
+          </div>
+        </section>
+      `;
+      App.innerHTML = `<div class="cb-section">${homeHtml}</div>`;
+      cbFadeIn(App);
+    }
+    // Resume Page (Renderer)
+    function renderResume() {
+      // Initial state: retrieve from AppState or blank
+      let resume = loadLocal('cb_resume', AppState.cb_resume);
+      // Utility: create input rows for fields
+      function input_row(label, name, value, type='text', placeholder='', required=false) {
+        return `<div class="cb-row" style="margin-bottom:12px;">
+          <label style="display:block;font-weight:500;">${label}${required?' <span style=\"color:'+"#8B5CF6"+'\">*</span>':''}</label>
+          <input type="${type}" name="${name}" value="${value||''}" placeholder="${placeholder}" class="cb-inp"${required?' required':''} />
+        </div>`;
+      }
+      // Utility: create textarea
+      function textarea_row(label, name, value, placeholder='', required=false) {
+        return `<div class="cb-row" style="margin-bottom:12px;">
+          <label style="display:block;font-weight:500;">${label}${required?' <span style=\"color:'+"#8B5CF6"+'\">*</span>':''}</label>
+          <textarea name="${name}" class="cb-inp" rows="3" placeholder="${placeholder}"${required?' required':''}>${value||''}</textarea>
+        </div>`;
+      }
+      // Utility: tags
+      function tags_input(label, name, values) {
+        return `<div class="cb-row" style="margin-bottom:12px;">
+          <label style="display:block;font-weight:500;">${label}</label>
+          <div class="cb-tags" id="tags-${name}">
+            ${values.map(t=>`<span class='cb-tag'>${t}<button class='cb-tag-x' data-name='${name}' data-tag='${t}' title='Remove'>&times;</button></span>`).join('')}
+            <input type="text" class="cb-inp cb-tag-inp" name="${name}-add" placeholder="Add skill..." />
+          </div>
+        </div>`;
+      }
+      // Utility: repeated block
+      function list_section(title, items, fields, addBtnText, name) {
+        return `<div class="cb-row cb-list-section" style="margin-bottom:16px;">
+          <div style="font-weight:600;font-size:16px;margin-bottom:3px;">${title}</div>
+          <div id="cb-list-${name}">
+            ${items.map((item,i)=>`
+              <div class='cb-list-item' data-i='${i}' style='border-bottom:1px solid #E5E7EB;padding-bottom:10px;margin-bottom:3px;'>
+                ${fields.map(f=>input_row(f.label,`${name}-${i}-${f.name}`,item[f.name]||'',f.type||'text',f.placeholder||''))}
+                <button class='cb-tag-x cb-list-del' data-name='${name}' data-i='${i}' title='Remove' style='font-size:18px;color:#c00;border:none;background:none;float:right'>&times; Remove</button>
+              </div>`).join('')}
+          </div>
+          <button class="btn btn-secondary cb-list-add" data-name="${name}" style="margin-top:7px;">+ ${addBtnText}</button>
+        </div>`;
+      }
+      // Form generator
+      let resumeForm = `<form id="cb-resume-form">
+        <div style='border-bottom:1px solid var(--color-border);padding-bottom:10px;margin-bottom:16px;'>
+          <div style='font-weight:600;font-size:18px;margin-bottom:6px;'>Personal Information</div>
+          ${input_row('Full Name', 'personal-name', resume.personal.name, 'text', 'John Doe', true)}
+          ${input_row('Email', 'personal-email', resume.personal.email, 'email', 'john.doe@email.com', true)}
+          ${input_row('Phone', 'personal-phone', resume.personal.phone, 'tel', '+91 88999 12345', true)}
+          ${input_row('Location', 'personal-location', resume.personal.location, 'text', 'Bangalore, India')}
+        </div>
+        <div style='border-bottom:1px solid var(--color-border);padding-bottom:10px;margin-bottom:16px;'>
+          <div style='font-weight:600;font-size:18px;margin-bottom:6px;'>Professional Summary</div>
+          ${textarea_row('Summary', 'summary', resume.summary, 'E.g. Passionate software engineer with 5+ years experience designing scalable systems.', true)}
+        </div>
+        ${list_section('Education', resume.education, [
+          {label:'School/University','name':'school'},{label:'Degree','name':'degree'},{label:'Field','name':'field'},{label:'Year','name':'year',type:'number',placeholder:'2025'}
+        ], 'Add Education', 'education')}
+        ${tags_input('Skills','skills', resume.skills)}
+        ${list_section('Projects', resume.projects,[
+          {label:'Project Name','name':'name'},{label:'Description','name':'desc'},{label:'Technologies','name':'tech'},{label:'Link','name':'link'}
+        ], 'Add Project', 'projects')}
+        ${list_section('Experience', resume.experience,[
+          {label:'Company','name':'company'},{label:'Position','name':'position'},{label:'Start Date','name':'start'},{label:'End Date','name':'end'},{label:'Description','name':'desc'}
+        ], 'Add Experience','experience')}
+        <button type="submit" class="btn" style="margin-top:16px;width:100%;font-size:20px;">Generate Resume</button>
+      </form>`;
+      // PDF-style preview generator
+      function generatePreview(resume) {
+        // Resume header
+        let edus = resume.education.map(e => `<li>${e.degree||''}, ${e.field||''} @ <b>${e.school||''}</b> (${e.year||''})</li>`).join('');
+        let projs = resume.projects.map(p => `<li><b>${p.name||''}</b> <span style='color:#8B5CF6'>${p.link?`<a href='${p.link}' target='_blank'>[Link]</a>`:''}</span><br>${p.desc||''}<br><i>${p.tech||''}</i></li>`).join('');
+        let exps = resume.experience.map(e => `<li><b>${e.position||''}</b> at <b>${e.company||''}</b>, ${e.start||''} - ${e.end||''}<br>${e.desc||''}</li>`).join('');
+        let skills = resume.skills.map(s => `<span style='background:#3B82F6;color:#fff;border-radius:8px;padding:3px 8px;margin:1px 4px;display:inline-block;font-size:12px;'>${s}</span>`).join('');
+        return `<div class='cb-pdf-preview fade-in' style='background:#fff;border-radius:22px;box-shadow:var(--color-card-shadow);padding:28px 36px;max-width:640px;margin:auto;border:2px solid #E5E7EB;'>
+          <div style='font-weight:700;font-size:24px;color:#3B82F6;font-family:Poppins;margin-bottom:3px;'>${resume.personal.name || 'Full Name'}</div>
+          <div style='font-size:14px;color:#8B5CF6;margin-bottom:5px;'>${resume.personal.email||''}
+          ${resume.personal.phone ? ` | ${resume.personal.phone}` : ''}
+          ${resume.personal.location ? `<span style='color:#333'> | ${resume.personal.location}</span>` : ''}
+          </div>
+          <div style='margin-bottom:12px;border-left:4px solid #8B5CF6;padding-left:12px;font-size:16px;color:#1F2937;font-family:Inter;'>${resume.summary||''}</div>
+          <div style='margin-bottom:8px;'><b style='color:#3B82F6;'>Education</b><ul>${edus}</ul></div>
+          <div style='margin-bottom:8px;'><b style='color:#3B82F6;'>Skills</b> <div>${skills}</div></div>
+          <div style='margin-bottom:8px;'><b style='color:#3B82F6;'>Projects</b> <ul>${projs}</ul></div>
+          <div style='margin-bottom:8px;'><b style='color:#3B82F6;'>Experience</b> <ul>${exps}</ul></div>
+          <button class='btn btn-secondary' style='font-size:18px;margin-top:12px;margin-bottom:0;' onclick='cbSimulatePDFDownload()'>Download as PDF</button>
+        </div>`;
+      }
+      // Attach listeners and localStorage
+      setTimeout(() => {
+        // Skills tag add/remove
+        document.querySelectorAll('.cb-tag-x').forEach(btn => {
+          btn.onclick = (e) => {
+            let tag = btn.dataset.tag;
+            resume.skills = resume.skills.filter(s => s!==tag);
+            saveLocal('cb_resume', resume);
+            renderResume();
+          }
+        });
+        document.querySelector('.cb-tag-inp').addEventListener('keydown',e=>{
+          if(e.key==='Enter'){
+            let val = e.target.value.trim();
+            if(val.length>0 && !resume.skills.includes(val)){
+              resume.skills.push(val);
+              e.target.value='';
+              saveLocal('cb_resume', resume);
+              renderResume();
+            }
+          }
+        });
+        // List add/del
+        document.querySelectorAll('.cb-list-add').forEach(btn=>{
+          btn.onclick = () => {
+            if(btn.dataset.name==='education') resume.education.push({});
+            if(btn.dataset.name==='projects') resume.projects.push({});
+            if(btn.dataset.name==='experience') resume.experience.push({});
+            saveLocal('cb_resume', resume);
+            renderResume();
+          }
+        });
+        document.querySelectorAll('.cb-list-del').forEach(btn=>{
+          btn.onclick = () => {
+            let idx=parseInt(btn.dataset.i);
+            let arr = resume[btn.dataset.name];
+            arr.splice(idx,1);
+            saveLocal('cb_resume', resume);
+            renderResume();
+          }
+        });
+        // Form inputs
+        document.getElementById('cb-resume-form').oninput = function(e) {
+          let n = e.target.name;
+          let v = e.target.value;
+          // Personal
+          if(n.startsWith('personal-')) resume.personal[n.split('-')[1]] = v;
+          // Summary
+          else if(n==='summary') resume.summary=v;
+          // Education
+          else if(n.startsWith('education-')) {
+            const tokens=n.split('-'); let i=parseInt(tokens[1]); let field=tokens[2];
+            resume.education[i][field]=v;
+          }
+          // Projects
+          else if(n.startsWith('projects-')) {
+            const tokens=n.split('-'); let i=parseInt(tokens[1]); let field=tokens[2];
+            resume.projects[i][field]=v;
+          }
+          // Experience
+          else if(n.startsWith('experience-')) {
+            const tokens=n.split('-'); let i=parseInt(tokens[1]); let field=tokens[2];
+            resume.experience[i][field]=v;
+          }
+          saveLocal('cb_resume', resume);
+        };
+        document.getElementById('cb-resume-form').onsubmit = (e) => {
+          e.preventDefault();
+          saveLocal('cb_resume', resume);
+          document.getElementById('cb-resume-preview').style.display = 'block';
+          cbFadeIn(document.getElementById('cb-resume-preview'));
+        };
+        // Simulated PDF download
+        window.cbSimulatePDFDownload = function() {
+          alert('PDF download simulated! (Feature to be enabled soon)');
+        }
+      },150);
+      // SPA Page Layout
+      App.innerHTML = `<div class='cb-section fade-in' style='display:flex;flex-wrap:wrap;gap:40px;justify-content:center;'>
+        <div style='flex:2 1 350px; min-width:320px;max-width:440px;'>
+          <h2 style='font-size:28px;font-family:Poppins;margin-bottom:8px;'>Resume Builder</h2>
+          <p style='font-size:15px;color:#372;'>Fill your resume sections below. Real-time preview on the right!</p>
+          ${resumeForm}
+        </div>
+        <div style='flex:2 1 350px;min-width:320px;max-width:480px;'>
+          <div id='cb-resume-preview' style='display:block;'>
+            <h3 style='text-align:center;font-size:20px;font-family:Poppins;margin:14px 0;'>PDF Resume Preview</h3>
+            ${generatePreview(resume)}
+          </div>
+        </div>
+      </div>`;
+      cbFadeIn(App);
+    }
+    // ATS Checker Page
+    function renderATS() {
+      let state = loadLocal('cb_ats', {file:null,score:null,keywords:[],suggestions:[],tips:[]});
+      function getRandomATSScore() { return Math.floor(Math.random()*30)+65; }
+      function getMissingKeywords() {
+        let defaultKW = ['ATS system','Keyword optimization','Action verbs','Industry jargon','Quantifiable achievements'];
+        return defaultKW.sort(()=>Math.random()-0.5).slice(0,Math.floor(Math.random()*3+4));
+      }
+      function getSuggestions() {
+        let suggs = ["Use action verbs: Led, Developed, Designed, Implemented, Managed","Include quantifiable metrics: increased by 25%, reduced costs by 30%","Add technical keywords relevant to the job description","Use standard section headers: Professional Summary, Experience, Skills","Avoid graphics, tables, and unusual formatting for better ATS compatibility","Keep consistent formatting with proper spacing and indentation","Include relevant certifications and technical skills"];
+        return suggs.sort(()=>Math.random()-0.5).slice(0,5);
+      }
+      function getTips() {
+        let tips = ["Use clear fonts and avoid images or tables","Optimize skills and experience sections","Match keywords with job description"];
+        return tips.sort(()=>Math.random()-0.5).slice(0,2);
+      }
+      function atsProgressBar(score) {
+        let color = score<75?"#F97316":score<85?"#FACC15":"#10B981";
+        return `<svg width='92' height='92' style='display:inline-block;margin:8px;'>
+          <circle cx='46' cy='46' r='40' fill='none' stroke='#E5E7EB' stroke-width='7'/>
+          <circle cx='46' cy='46' r='40' fill='none' stroke='${color}' stroke-width='7' stroke-dasharray='251' stroke-dashoffset='${251-Math.round(score/100*251)}' style='transition:stroke-dasharray 0.8s;'/>
+          <text x='46' y='54' font-size='2rem' fill='#222' text-anchor='middle' font-family='Poppins' font-weight='700'>${score}</text>
+        </svg>`;
+      }
+      function renderResults(state) {
+        return `<div class='fade-in' style='max-width:520px;margin:auto;background:#fff;border-radius:16px;box-shadow:var(--color-card-shadow);padding:32px 24px;'>
+          <h2 style='color:#3B82F6;text-align:center;font-family:Poppins;font-size:24px;'>ATS Score</h2>
+          <div style='text-align:center;'>${atsProgressBar(state.score||87)}</div>
+          <div style='margin:18px 0;background:#F3F4F6;border-radius:10px;padding:11px;'>
+            <b style='color:#8B5CF6;font-size:17px;'>Missing Keywords:</b>
+            <div style='padding:6px 0;'>${state.keywords.map(kw=>`<span style='background:#8B5CF6;color:#fff;border-radius:7px;padding:2.5px 8px;margin:2px 4px;font-size:13px;'>${kw}</span>`).join('')}</div>
+          </div>
+          <div style='margin:12px 0;'>
+            <b style='color:#8B5CF6;'>Suggestions to Improve:</b>
+            <ul style='padding-left:16px;margin-top:5px;'>${state.suggestions.map(s=>`<li>${s}</li>`).join('')}</ul>
+          </div>
+          <div style='margin:10px 0;'>
+            <b style='color:#8B5CF6;'>Optimized Resume Tips:</b>
+            <ul style='padding-left:16px;margin-top:5px;'>${state.tips.map(s=>`<li>${s}</li>`).join('')}</ul>
+          </div>
+          <button class='btn btn-secondary' style='margin:14px 0 0 0;width:100%;font-size:18px;' onclick='alert("Resume Optimization download simulated!")'>Download optimized</button>
+        </div>`;
+      }
+      App.innerHTML = `<div class='cb-section fade-in' style='max-width:520px;margin:auto;'>
+        <h2 style='font-family:Poppins;font-size:28px;margin-bottom:8px;'>ATS Resume Checker</h2>
+        <p style='font-size:16px;color:#222;'>Upload your resume PDF to scan for ATS compatibility. Your score & tips will appear below.</p>
+        <form id='cb-ats-upload' style='background:#fff;border-radius:14px;padding:18px;box-shadow:var(--color-card-shadow);margin-bottom:15px;'>
+          <label style='font-weight:500;font-size:15px;margin-bottom:7px;display:block;'>Select Resume PDF:</label>
+          <input type='file' name='resume-file' accept='.pdf,application/pdf' style='font-size:16px;margin-bottom:7px;' />
+          <button class='btn btn-secondary' style='margin:0 0 0 8px;font-size:17px;' type='submit'>Scan Resume</button>
+        </form>
+        <div id='cb-ats-result'>${state.score?renderResults(state):''}</div>
+      </div>`;
+      cbFadeIn(App);
+      setTimeout(()=>{
+        document.getElementById('cb-ats-upload').onsubmit = function(e) {
+          e.preventDefault();
+          let fileInp = e.target.querySelector('input[type=file]');
+          if(!fileInp.files[0]) { alert('Please select a PDF file to upload.'); return; }
+          // Simulate scan
+          setTimeout(()=>{
+            let s = {file: fileInp.files[0].name,score:getRandomATSScore(),keywords:getMissingKeywords(),suggestions:getSuggestions(),tips:getTips()};
+            saveLocal('cb_ats',s);
+            renderATS();
+          },1200);
+          App.querySelector('#cb-ats-result').innerHTML = '<div class="cb-loader">Scanning...</div>';
+        };
+      },400);
+    }
+    // Interview Practice Page
+    function renderInterview() {
+      let state = loadLocal('cb_interview', {role:JOB_ROLES[0],questions:[],current:0,answers:[],scores:[],feedbacks:[]});
+      function genQuestions(role) {
+        let qs = INTERVIEW_QUESTIONS[role] || INTERVIEW_QUESTIONS[JOB_ROLES[0]];
+        return qs.map(q=>({q,answered:false,answer:"",feedback:"",score:{communication:0,clarity:0,confidence:0}}));
+      }
+      function roleDropdown(selected, roles) {
+        return `<select class='cb-inp' name='job-role' style='font-size:17px;font-weight:600;margin-bottom:8px;'>${roles.map(r=>`<option value='${r}' ${r===selected?'selected':''}>${r}</option>`).join('')}</select>`;
+      }
+      function colorScore(score) {
+        if(score<70) return "#F97316"; if(score<80) return "#FACC15"; if(score<91) return "#10B981"; return "#22D3EE";
+      }
+      function getFeedback(score) {
+        if(score>90) return "Excellent response! You demonstrated strong communication and deep knowledge.";
+        if(score>80) return "Good response with relevant details and clear explanation.";
+        if(score>70) return "Your answer was relevant but could be more structured and detailed.";
+        return "Try to be more specific and include concrete examples.";
+      }
+      function scoreCard(scores) {
+        return `<div style='text-align:center;margin:8px 0;'>
+          <div style='margin:6px 0;font-size:22px;font-weight:700;color:${colorScore(scores.total)};'>Overall: ${scores.total}/100</div>
+          <div style='display:flex;gap:13px;justify-content:center;'>
+            <div style='padding:5px 9px;border-radius:8px;background:${colorScore(scores.communication)+'36'};color:#222;'><span style='font-weight:600'>Communication:</span> ${scores.communication}</div>
+            <div style='padding:5px 9px;border-radius:8px;background:${colorScore(scores.clarity)+'36'};color:#222;'><span style='font-weight:600'>Clarity:</span> ${scores.clarity}</div>
+            <div style='padding:5px 9px;border-radius:8px;background:${colorScore(scores.confidence)+'36'};color:#222;'><span style='font-weight:600'>Confidence:</span> ${scores.confidence}</div>
+          </div>
+        </div>`;
+      }
+      function renderQuestion(qObj,i,max,totalAnswered) {
+        return `<div style='background:#fff;padding:24px 14px;border-radius:14px;box-shadow:var(--color-card-shadow);margin-bottom:16px;'>
+          <div style='font-size:17px;font-family:Poppins;font-weight:600;margin-bottom:5px;'>Question ${i+1} of ${max}:</div>
+          <div style='font-size:17px;'>${qObj.q}</div>
+          <form id='cb-answer-form' style='margin-top:18px;'>
+            <textarea placeholder='Type your answer...' class='cb-inp' rows='3' name='answer' style='width:100%;margin-bottom:6px;'>${qObj.answer||''}</textarea><br>
+            <button class='btn' type='submit'>Submit Answer</button>
+            <button type='button' class='btn btn-secondary' style='margin-left:8px;' onclick='alert("Voice recording simulated!")'>Record Voice</button>
+          </form>
+        </div>`;
+      }
+      function renderFeedback(score, feedback, i, max) {
+        return `<div style='background:#fff;padding:22px 14px;border-radius:14px;box-shadow:var(--color-card-shadow);margin-bottom:13px;'>
+          <div>${scoreCard(score)}</div>
+          <div style='font-size:17px;color:#3B82F6;'><b>Feedback:</b></div>
+          <div style='margin-bottom:10px;'>${feedback}</div>
+          <button class='btn btn-secondary' style='width:100%;font-size:17px;' id='cb-next-q'>${i+1 < max ? 'Next Question' : 'Finish'}</button>
+        </div>`;
+      }
+      // If no state.questions, generate new interview questions
+      if(!state.questions||!state.questions.length) { state.questions = genQuestions(state.role); state.current=0; state.answers=[]; state.scores=[]; state.feedbacks=[]; saveLocal('cb_interview',state); }
+      // UI layout
+      App.innerHTML = `<div class='cb-section fade-in' style='max-width:580px;margin:auto;'>
+        <h2 style='font-family:Poppins;font-size:28px;margin-bottom:8px;'>Interview Practice</h2>
+        <p style='font-size:16px;color:#444;'>Select your job role, get AI-generated questions, answer and receive feedback!</p>
+        <form id='cb-role-form' style='margin-bottom:14px;'>${roleDropdown(state.role, JOB_ROLES)} <button type='submit' class='btn btn-secondary' style='font-size:16px;'>Generate Questions</button></form>
+        <div id='cb-interview-q'>${renderQuestion(state.questions[state.current], state.current, state.questions.length,state.answers.length)}</div>
+        <div id='cb-interview-feedback'></div>
+      </div>`;
+      cbFadeIn(App);
+      setTimeout(()=>{
+        // Role form
+        document.getElementById('cb-role-form').onsubmit = (e) => {
+          e.preventDefault();
+          let role = e.target.querySelector('select').value;
+          state = {role,questions:genQuestions(role),current:0,answers:[],scores:[],feedbacks:[]};
+          saveLocal('cb_interview',state);
+          renderInterview();
+        };
+        // Answer form
+        document.getElementById('cb-answer-form').onsubmit = function(e) {
+          e.preventDefault();
+          let ans = e.target.answer.value;
+          // Simulate scoring
+          let score = {
+            communication: Math.floor(Math.random()*30)+65,
+            clarity: Math.floor(Math.random()*30)+65,
+            confidence: Math.floor(Math.random()*30)+65
+          };
+          score.total = Math.round((score.communication+score.clarity+score.confidence)/3);
+          let feedback = getFeedback(score.total);
+          state.questions[state.current].answer = ans;
+          state.answers[state.current] = ans;
+          state.scores[state.current] = score;
+          state.feedbacks[state.current] = feedback;
+          saveLocal('cb_interview',state);
+          App.querySelector('#cb-interview-q').innerHTML = '';
+          App.querySelector('#cb-interview-feedback').innerHTML = renderFeedback(score, feedback,state.current, state.questions.length);
+          setTimeout(()=>{
+            document.getElementById('cb-next-q').onclick = () => {
+              if(state.current+1 < state.questions.length) {
+                state.current++;
+                saveLocal('cb_interview',state);
+                renderInterview();
+              } else {
+                App.querySelector('#cb-interview-feedback').innerHTML = `<div style='text-align:center;padding:18px;background:#fff;border-radius:14px;box-shadow:var(--color-card-shadow);color:#3B82F6;font-size:23px;font-family:Poppins;'>Interview Completed!<br>Great job practicing.<br><br><button class='btn btn-secondary' onclick='location.hash="#home"'>Return Home</button></div>`;
+                App.querySelector('#cb-interview-q').innerHTML = '';
+              }
+            };
+          },300);
+        };
+      },350);
+    }
+    // About Page
+    function renderAbout() {
+      App.innerHTML = `<div class='cb-section fade-in' style='max-width:650px;margin:auto;'>
+        <h2 style='font-family:Poppins;font-size:28px;margin-bottom:7px;'>About CareerBoost AI</h2>
+        <p style='font-size:18px;color:#222;font-weight:500;'>Empowering every professional to showcase their skills, ace interviews, and get hired faster with the power of AI.</p>
+        <h3 style='font-size:21px;margin:13px 0 3px 0;color:#3B82F6;'>Our Mission</h3>
+        <p style='font-size:16px;color:#222;'>CareerBoost AI aims to democratize career growth by providing powerful tools that are simple, effective, and free. Resumes, ATS scores, interview coaching—all in one delightful web experience.</p>
+        <h3 style='font-size:21px;margin:13px 0 3px 0;color:#8B5CF6;'>Features</h3>
+        <ul style='font-size:16px;'>
+          <li>ATS-optimized Resume Builder</li>
+          <li>Resume ATS Score Checker with practical tips</li>
+          <li>Interview Practice with real-time, AI-driven feedback</li>
+        </ul>
+        <br>
+        <a href="#resume" class="btn" style="font-size:15px;">Get Started</a>
+      </div>`;
+      cbFadeIn(App);
+    }
+    // Contact Page
+    function renderContact() {
+      App.innerHTML = `<div class='cb-section fade-in' style='max-width:500px;margin:auto;'>
+        <h2 style='font-family:Poppins;font-size:28px;margin-bottom:8px;'>Contact Us</h2>
+        <form id='cb-contact-form' style='background:#fff;border-radius:14px;padding:21px 14px;box-shadow:var(--color-card-shadow);'>
+          <div style='margin-bottom:8px;font-size:15px;'>Name<br><input type="text" name="name" class="cb-inp" style="width:100%;margin-top:3px;" required></div>
+          <div style='margin-bottom:8px;font-size:15px;'>Email<br><input type="email" name="email" class="cb-inp" style="width:100%;margin-top:3px;" required></div>
+          <div style='margin-bottom:8px;font-size:15px;'>Subject<br><input type="text" name="subject" class="cb-inp" style="width:100%;margin-top:3px;" required></div>
+          <div style='margin-bottom:8px;font-size:15px;'>Message<br><textarea name="message" class="cb-inp" rows="3" style="width:100%;margin-top:3px;" required></textarea></div>
+          <button class='btn' type='submit' style='width:100%;font-size:17px;'>Send Message</button>
+        </form>
+        <div style='margin-top:18px;background:#F3F4F6;border-radius:10px;padding:14px;font-size:15px;'>
+          <b style='color:#3B82F6'>Contact Info:</b><br>
+          Email: <a href="mailto:hello@careerboost.ai" style='color:#8B5CF6'>hello@careerboost.ai</a><br>
+          Twitter: <a href="https://twitter.com/careerboostai" target='_blank' style='color:#8B5CF6'>@careerboostai</a><br>
+          LinkedIn: <a href="https://www.linkedin.com/company/careerboostai/" target='_blank' style='color:#8B5CF6'>CareerBoost AI</a>
+        </div>
+        <div id='cb-contact-success'></div>
+      </div>`;
+      cbFadeIn(App);
+      setTimeout(()=>{
+        document.getElementById('cb-contact-form').onsubmit = function(e) {
+          e.preventDefault();
+          let data = {};
+          Array.from(e.target.elements).forEach(f=>{if(f.name) data[f.name]=f.value});
+          // Validate
+          if(!data.name||!data.email||!data.subject||!data.message) {
+            alert('Please fill all fields!'); return;
+          }
+          // Show success
+          document.getElementById('cb-contact-success').innerHTML = `<div style='padding:13px;background:#D1FAE5;border-radius:9px;color:#065F46;margin-top:12px;font-size:16px;'>Thank you, ${data.name}!<br>We'll respond soon to: ${data.email}</div>`;
+          document.getElementById('cb-contact-form').reset();
+        }
+      },350);
+    }
+    // Main router
+    function showPage(page) {
+      switch(page){
+        case "home": renderHome(); break;
+        case "resume": renderResume(); break;
+        case "ats": renderATS(); break;
+        case "interview": renderInterview(); break;
+        case "about": renderAbout(); break;
+        case "contact": renderContact(); break;
+        default: renderHome(); break;
+      }
+    }
+    // Input / tag stylings (dynamic)
+    function cbInputStyle() {
+      let st = document.createElement('style');
+      st.innerHTML = `
+        .cb-inp {
+          border: 1px solid var(--color-border);
+          outline:none;
+          border-radius:8px;
+          font-size:16px;
+          padding:8px 11px;
+          margin:3px 0;
+          margin-bottom:6px;
+          font-family:'Inter',Arial,sans-serif;
+          background:#F3F4F6;
+          transition: border var(--transition), box-shadow var(--transition);
+        }
+        .cb-inp:focus {
+          border:1.5px solid #8B5CF6;
+          box-shadow:0 0 0 2px #8B5CF648;
+        }
+        .cb-tag {
+          display:inline-flex;
+          align-items:center;
+          background:#8B5CF6;
+          color:#fff;
+          border-radius:8px;
+          font-size:14px;
+          padding:3px 9px;
+          margin-right:6px;
+          margin-bottom:3px;
+        }
+        .cb-tag-x {
+          border:none;
+          background:none;
+          color:#fff;
+          margin-left:4px;
+          cursor:pointer;
+          font-size:18px;
+          font-weight:bold;
+        }
+        .cb-tag-inp {
+          border:none;
+          font-size:14px;
+          padding:3px 9px;
+          margin-left:2px;
+          width:100px;
+        }
+      `;
+      document.head.appendChild(st);
+    }
+    cbInputStyle();
+    // Initial page load
+    router(window.location.hash);
+  </script>
+</body>
+</html>
